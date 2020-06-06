@@ -1,0 +1,110 @@
+ 
+  <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+      <main>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-5">
+              <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                <div class="card-body">
+
+                  <div [formGroup]="signinForm" (ngSubmit)="loginUser()">
+                    <div class="help-block">
+                      <span  *ngIf="title"
+                            [innerHTML]="title"></span>
+                    </div>
+                    <div class="form-group">
+                      <label class="small mb-1" for="email">Email</label>
+                      <input class="form-control py-4" id="email" type="email" formControlName="email" placeholder="Enter email address" required /> 
+                      <div *ngIf="signinForm.get('email').invalid && (signinForm.get('email').dirty || signinForm.get('email').touched)"
+                           class="invalid-feedback">
+                        <div *ngIf="signinForm.get('email').errors?.required">
+                          email is required.
+                        </div>
+                        <div *ngIf="signinForm.get('email').errors?.email">
+                          Please enter a valid email.
+                        </div>
+                        <div *ngIf="!signinForm.get('email').errors?.isValidEmail">
+                          email does not exist: please choose another.
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label class="small mb-1" for="password">Password</label>
+                      <input class="form-control py-4" formControlName="password" type="password" placeholder="Enter password" requited />
+                      <div *ngIf="signinForm.get('password').invalid && (signinForm.get('password').dirty || signinForm.get('password').touched)"
+                           class="invalid-feedback">
+                        <div *ngIf="signinForm.get('password').errors?.required">
+                          email is required.
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" formControlName="rememberMe" type="checkbox" />
+                        <label class="custom-control-label" for="rememberMe">Remember password</label>
+                      </div>
+                    </div>
+
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                      <a class="small" href="/forgot-password">Forgot Password?</a>
+
+                      <button type="submit" class="btn btn-primary" (click)="loginUser()" [disabled]="signinForm.invalid">Login</button>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <div class="card-footer text-center">
+                  <div class="small"><a href="/user-signup">Need an account? Sign up!</a></div>
+                </div>
+
+              </div>
+
+
+              <!-- Form debug info panel -->
+              <div class="card bg-light mb-3">
+                <div class="card-header">Form Debug Info</div>
+                <div class="card-body">
+                  <div class="card-text">
+                    <div><strong>Form value:</strong></div>
+                    <div class="help-block">
+                      {{ signinForm.value | json }}
+                    </div>
+                    <div class="mt-2"><strong>Form status:</strong></div>
+                    <div class="help-block">
+                      {{ signinForm.status | json }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form activity log panel -->
+              <div class="card bg-light mb-3">
+                <div class="card-header">Form Activity Log</div>
+                <div class="card-body">
+                  <div class="card-text">
+                    <div class="help-block">
+                      <span *ngIf="activityLog"
+                            [innerHTML]="activityLog"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+   
+
+  </div> 

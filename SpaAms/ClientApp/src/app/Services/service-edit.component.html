@@ -1,0 +1,210 @@
+
+  <div class="container-fluid">
+    <h1 class="mt-4">Service</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">{{title}}</li>
+    </ol>
+
+
+
+    <div class="serice-edit">
+
+      <p *ngIf="this.id && !serice"><em>Loading...</em></p>
+
+      <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="serviceName">service Name:</label>
+          <br />
+          <input type="text" id="serviceName"
+                 formControlName="serviceName" required
+                 placeholder="serviceName..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('serviceName')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('serviceName').errors?.required">
+              serviceName is required.
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="form-group">
+          <label for="durationHour">durationHour:</label>
+          <br />
+          <input type="number" id="durationHour"
+                 formControlName="durationHour" required
+                 placeholder="durationHour..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('durationHour')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('durationHour').errors?.required">
+              durationHour is required.
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="form-group">
+          <label for="durationMinute">durationMinute:</label>
+          <br />
+          <input type="number" id="durationMinute"
+                 formControlName="durationMinute" required
+                 placeholder="CdurationMinute..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('durationMinute')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('durationMinute').errors?.required">
+              description is required.
+            </div>
+          </div>
+
+
+        </div>
+        <div class="form-group">
+          <label for="price">price:</label>
+          <br />
+          <input type="number" id="price"
+                 formControlName="price" required
+                 placeholder="price..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('price')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('price').errors?.required">
+              price is required.
+            </div>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="photo">photo:</label>
+          <br />
+          <input type="text" id="photo"
+                 formControlName="photo" required
+                 placeholder="photo..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('photo')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('photo').errors?.required">
+              photo is required.
+            </div>
+          </div>
+
+
+        </div>
+        <div class="form-group">
+          <label for="serviceDescription">serviceDescription:</label>
+          <br />
+          <input type="text" id="serviceDescription"
+                 formControlName="serviceDescription" required
+                 placeholder="serviceDescription..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('serviceDescription')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('serviceDescription').errors?.required">
+              serviceDescription is required.
+            </div>
+          </div>
+          <div *ngIf="form.get('serviceDescription').errors?.isDupeField" class="invalid-feedback">
+            Description does already exist: please choose another.
+          </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" formControlName="activeStatus" id="canBook" type="checkbox" />
+            <label class="custom-control-label" for="activeStatus">Active?</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="serviceCategoryId">serviceCategoryId:</label>
+          <br />
+          <input type="number" id="serviceCategoryId"
+                 formControlName="serviceCategoryId" required
+                 placeholder="serviceCategoryId..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('serviceCategoryId')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('serviceCategoryId').errors?.required">
+              serviceCategoryId is required.
+            </div>
+          </div>
+           
+
+        </div>
+
+        <div class="form-group commands">
+          <button *ngIf="id" type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="form.invalid"
+                  class="btn btn-success">
+            Save
+          </button>
+          <button *ngIf="!id" type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="form.invalid"
+                  class="btn btn-success">
+            Create
+          </button>
+          <button type="button"
+                  [routerLink]="['/services']"
+                  class="btn btn-default">
+            Cancel
+          </button>
+        </div>
+        <!-- Form debug info panel -->
+        <div class="card bg-light mb-3">
+          <div class="card-header">Form Debug Info</div>
+          <div class="card-body">
+            <div class="card-text">
+              <div><strong>Form value:</strong></div>
+              <div class="help-block">
+                {{ form.value | json }}
+              </div>
+              <div class="mt-2"><strong>Form status:</strong></div>
+              <div class="help-block">
+                {{ form.status | json }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form activity log panel -->
+        <div class="card bg-light mb-3">
+          <div class="card-header">Form Activity Log</div>
+          <div class="card-body">
+            <div class="card-text">
+              <div class="help-block">
+                <span *ngIf="activityLog"
+                      [innerHTML]="activityLog"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--<div formArrayName="aliases">
+    <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+    <div *ngFor="let alias of aliases.controls; let i=index">
+       The repeated alias template
+      <label>
+        Alias:
+        <input type="text" [formControlName]="i">
+      </label>
+    </div>
+  </div>-->
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <h1 class="mt-4">Service</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Services List</li>
+  </ol>
+   
+
+       
+      <p *ngIf="!services"><em>Loading...</em></p>
+
+      <div class="commands text-right" *ngIf="services">
+        <button type="button"
+                [routerLink]="['/service']"
+                class="btn btn-success">
+          Add a new service
+        </button>
+      </div>
+
+      <mat-form-field [hidden]="!services">
+        <input matInput (keyup)="loadData($event.target.value)"
+               placeholder="Filter by name (or part of it)...">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="services" class="mat-elevation-z8" [hidden]="!services"
+             matSort (matSortChange)="loadData()"
+             matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let service"> {{service.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="serviceName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>serviceName</th>
+          <td mat-cell *matCellDef="let service">
+            <a [routerLink]="['/service', service.id]">{{service.serviceName}}</a>
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="durationHour">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>durationHour</th>
+          <td mat-cell *matCellDef="let service">
+           {{service.durationHour}} 
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="durationMinute">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>durationMinute</th>
+          <td mat-cell *matCellDef="let service">
+         {{service.durationMinute}} 
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>price</th>
+          <td mat-cell *matCellDef="let service">
+          {{service.price}}
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="photo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>photo</th>
+          <td mat-cell *matCellDef="let service">
+            <a [routerLink]="['/service', service.id]">{{service.photo}}</a>
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="serviceDescription">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>serviceDescription</th>
+          <td mat-cell *matCellDef="let service">
+           {{service.serviceDescription}} 
+          </td>
+        </ng-container>
+      
+       
+        <!-- Name Column -->
+        <ng-container matColumnDef="activeStatus">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>active?</th>
+          <td mat-cell *matCellDef="let service">
+           {{service.activeStatus}} 
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="serviceCategoryId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>serviceCategoryId</th>
+          <td mat-cell *matCellDef="let service">
+            {{service.serviceCategoryId}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      ﻿
+      <!-- Pagination directive -->
+      <mat-paginator [hidden]="!services"
+                     (page)="getData($event)"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[10, 20, 50]"
+                     showFirstLastButtons></mat-paginator>
+    </div>

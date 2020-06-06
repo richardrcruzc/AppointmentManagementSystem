@@ -1,0 +1,211 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\angular-material.module.ts" />
+    <None Remove="ClientApp\src\app\base.form.component.ts" />
+    <None Remove="ClientApp\src\app\base.service.ts" />
+    <None Remove="ClientApp\src\app\Clients\client-edit.component.ts" />
+    <None Remove="ClientApp\src\app\Clients\client.service.ts" />
+    <None Remove="ClientApp\src\app\Clients\clients.component.ts" />
+    <None Remove="ClientApp\src\app\closeddates\closeddate-edit.component.ts" />
+    <None Remove="ClientApp\src\app\closeddates\closeddate.service.ts" />
+    <None Remove="ClientApp\src\app\closeddates\closeddate.ts" />
+    <None Remove="ClientApp\src\app\closeddates\closeddates.component.spec.ts" />
+    <None Remove="ClientApp\src\app\closeddates\closeddates.component.ts" />
+    <None Remove="ClientApp\src\app\components\api-authorization.module.ts" />
+    <None Remove="ClientApp\src\app\components\signin.component.ts" />
+    <None Remove="ClientApp\src\app\components\signin\forgot-password.component.ts" />
+    <None Remove="ClientApp\src\app\components\signin\login.ts" />
+    <None Remove="ClientApp\src\app\components\signup.component.ts" />
+    <None Remove="ClientApp\src\app\components\signup\signin.component.spec.ts" />
+    <None Remove="ClientApp\src\app\components\signup\signup.component.spec.ts" />
+    <None Remove="ClientApp\src\app\components\user-profile.component.ts" />
+    <None Remove="ClientApp\src\app\components\user-profile\user-edit.components.ts" />
+    <None Remove="ClientApp\src\app\components\user-profile\user-profile.component.spec.ts" />
+    <None Remove="ClientApp\src\app\components\user-profile\user.service.ts" />
+    <None Remove="ClientApp\src\app\components\user-profile\users-profiles.component.ts" />
+    <None Remove="ClientApp\src\app\jwt.service.ts" />
+    <None Remove="ClientApp\src\app\locations\location-edit.component.ts" />
+    <None Remove="ClientApp\src\app\locations\location.service.ts" />
+    <None Remove="ClientApp\src\app\locations\location.ts" />
+    <None Remove="ClientApp\src\app\locations\locations.component.spec.ts" />
+    <None Remove="ClientApp\src\app\locations\locations.component.ts" />
+    <None Remove="ClientApp\src\app\categories\categories.component.ts" />
+    <None Remove="ClientApp\src\app\categories\category-edit.component.ts" />
+    <None Remove="ClientApp\src\app\categories\category.service.ts" />
+    <None Remove="ClientApp\src\app\messages\message-edit.component.ts" />
+    <None Remove="ClientApp\src\app\messages\message.service.ts" />
+    <None Remove="ClientApp\src\app\messages\message.ts" />
+    <None Remove="ClientApp\src\app\messages\messages.component.spec.ts" />
+    <None Remove="ClientApp\src\app\messages\messages.component.ts" />
+    <None Remove="ClientApp\src\app\Services\service-edit.component.ts" />
+    <None Remove="ClientApp\src\app\Services\service.service.ts" />
+    <None Remove="ClientApp\src\app\Services\Service.ts" />
+    <None Remove="ClientApp\src\app\Services\services.component.ts" />
+    <None Remove="ClientApp\src\app\Services\tokenresponse.ts" />
+    <None Remove="ClientApp\src\app\shared\auth.guard.ts" />
+    <None Remove="ClientApp\src\app\shared\auth.service.ts" />
+    <None Remove="ClientApp\src\app\shared\authconfig.interceptor.ts" />
+    <None Remove="ClientApp\src\app\shared\role-authorisation.service.ts" />
+    <None Remove="ClientApp\src\app\shared\User.ts" />
+    <None Remove="ClientApp\src\app\SpinnerComponent.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\angular-material.module.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\base.form.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\base.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Clients\clients.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Clients\client-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Clients\client.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\components\api-authorization.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signin\forgot-password.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signin\login.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signin\signin.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signin\signin.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signup\signup.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\signup\signup.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\user-profile\user-edit.components.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\user-profile\user.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\components\user-profile\user-profile.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\user-profile\user-profile.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\user-profile\users-profiles.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\jwt.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\closeddates\closeddate-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\closeddates\closeddate.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\closeddates\closeddate.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\closeddates\closeddates.component.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\closeddates\closeddates.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\messages\message-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\messages\message.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\messages\message.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\messages\messages.component.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\messages\messages.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\locations\location-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\locations\location.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\locations\location.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\locations\locations.component.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\locations\locations.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\categories\category.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\categories\categories.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\categories\category-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Services\services.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Services\service-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Services\service.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Services\service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Services\tokenresponse.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\auth.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\authconfig.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\role-authorisation.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\user.ts" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

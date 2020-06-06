@@ -1,0 +1,82 @@
+
+<div class="container-fluid">
+  <h1 class="mt-4">Clients Messages</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">List Clients Messages</li>
+  </ol>
+
+   
+
+  <p *ngIf="!messages"><em>Loading...</em></p>
+
+  <div class="commands text-right" >
+    <button type="button"
+            [routerLink]="['/message']"
+            class="btn btn-success">
+      Add a new Message
+    </button>
+  </div>
+
+  <mat-form-field [hidden]="!messages">
+    <input matInput (keyup)="loadData($event.target.value)"
+           placeholder="Filter by name (or part of it)...">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="messages" class="mat-elevation-z8" [hidden]="!messages"
+         matSort (matSortChange)="loadData()"
+         matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let message"> {{message.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="textMessage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
+      <td mat-cell *matCellDef="let message">
+        <a [routerLink]="['/message', message.id]">{{message.textMessage}}</a>
+      </td>
+    </ng-container>
+
+    <!-- Lat Column -->
+    <ng-container matColumnDef="recipient">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recipient</th>
+      <td mat-cell *matCellDef="let message"> {{message.recipient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="method">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>method</th>
+      <td mat-cell *matCellDef="let message"> {{message.method}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="typeMessage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>typeMessage</th>
+      <td mat-cell *matCellDef="let message"> {{message.typeMessage}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>message</th>
+      <td mat-cell *matCellDef="let message"> {{message.message}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>location</th>
+      <td mat-cell *matCellDef="let message"> {{message.location}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  ﻿
+  <!-- Pagination directive -->
+  <mat-paginator [hidden]="!messages"
+                 (page)="getData($event)"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 20, 50]"
+                 showFirstLastButtons></mat-paginator>
+</div>

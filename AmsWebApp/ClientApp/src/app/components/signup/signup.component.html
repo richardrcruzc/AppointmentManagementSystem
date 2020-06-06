@@ -1,0 +1,125 @@
+<div id="layoutAuthentication_content">
+  <main>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+            <div class="card-body">
+              <div [formGroup]="form" (ngSubmit)="registerUser()">
+
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1" for="firstName">First Name</label>
+                      <input class="form-control py-4" id="firstName" formControlName="firstName" type="text" placeholder="Enter first name" />
+                      <div *ngIf="hasError('firstName')"
+                           class="invalid-feedback">
+                        <div *ngIf="form.get('firstName').errors?.required">
+                          First  Name is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1" for="lastName">Last Name</label>
+                      <input class="form-control py-4" id="lastName" formControlName="lastName" type="text" placeholder="Enter last name" />
+                      <div *ngIf="hasError('lastName')"
+                           class="invalid-feedback">
+                        <div *ngIf="form.get('lastName').errors?.required">
+                          Last Name is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group"><label class="small mb-1" for="mobile">Mobile Phone</label>
+                <input class="form-control py-4" id="mobile" formControlName="mobile" type="tel" placeholder="Enter mobile phone" /></div>
+                <div class="form-group"><label class="small mb-1" for="email">Email</label><input class="form-control py-4" id="email" formControlName="email" type="email" aria-describedby="emailHelp" placeholder="Enter email address" /></div>
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1" for="password">Password</label>
+                      <input class="form-control py-4" id="password" formControlName="password" type="password" placeholder="Enter password" />
+                      <div *ngIf="form.hasError('notSame')">
+
+                        Passwords do not match
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1" for="confirmPassword">Confirm Password</label>
+                      <input class="form-control py-4" id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm password" />
+                      <div *ngIf="form.hasError('notSame')">
+
+                        Confirm Password do not match
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mt-4 mb-0">
+
+
+                  <button *ngIf="!id" type="submit"
+                          (click)="registerUser()"
+                          [disabled]="form.invalid"
+                          class="btn btn-primary btn-block">
+                    Create Account
+                  </button>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="small"><a href="/log-in">Have an account? Go to login</a></div>
+            </div>
+
+
+            <!-- Form debug info panel -->
+            <div class="card bg-light mb-3">
+              <div class="card-header">Form Debug Info</div>
+              <div class="card-body">
+                <div class="card-text">
+                  <div><strong>Form value:</strong></div>
+                  <div class="help-block">
+                    {{ form.value | json }}
+                  </div>
+                  <div class="mt-2"><strong>Form status:</strong></div>
+                  <div class="help-block">
+                    {{ form.status | json }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form activity log panel -->
+            <div class="card bg-light mb-3">
+              <div class="card-header">Form Activity Log</div>
+              <div class="card-body">
+                <div class="card-text">
+                  <div class="help-block">
+                    <span *ngIf="activityLog"
+                          [innerHTML]="activityLog"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

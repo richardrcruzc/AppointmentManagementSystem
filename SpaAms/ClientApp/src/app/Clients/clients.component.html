@@ -1,0 +1,96 @@
+
+<div class="container-fluid">
+  <h1 class="mt-4">Client</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Clients list</li>
+  </ol>
+   
+
+       
+      <p *ngIf="!clients"><em>Loading...</em></p>
+
+      <div class="commands text-right" *ngIf="clients">
+        <button type="button"
+                [routerLink]="['/client']"
+                class="btn btn-success">
+          Add a new client
+        </button>
+      </div>
+
+      <mat-form-field [hidden]="!clients">
+        <input matInput (keyup)="loadData($event.target.value)"
+               placeholder="Filter by name (or part of it)...">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="clients" class="mat-elevation-z8" [hidden]="!clients"
+             matSort (matSortChange)="loadData()"
+             matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let client"> {{client.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>fullName</th>
+          <td mat-cell *matCellDef="let client">
+            <a [routerLink]="['/client', client.id]"> {{client.fullName}}</a>
+          </td>
+        </ng-container>
+         
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="mobile">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>mobile</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.mobile}}
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.email}}
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="active">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>active</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.active}}
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="sendNotificationBy">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>sendNotificationBy</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.sendNotificationBy}}
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="acceptsMarketingNotifications">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>acceptsMarketingNotifications</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.acceptsMarketingNotifications}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="photo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>photo</th>
+          <td mat-cell *matCellDef="let client">
+           {{client.photo}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      ﻿
+      <!-- Pagination directive -->
+      <mat-paginator [hidden]="!clients"
+                     (page)="getData($event)"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[10, 20, 50]"
+                     showFirstLastButtons></mat-paginator>
+    </div>

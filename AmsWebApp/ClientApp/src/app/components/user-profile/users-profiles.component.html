@@ -1,0 +1,90 @@
+
+<div class="container-fluid">
+  <h1 class="mt-4">User</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">List Users</li>
+  </ol>
+
+
+
+  <p *ngIf="!users"><em>Loading...</em></p>
+
+  <div class="commands text-right" *ngIf="users">
+    <button type="button"
+            [routerLink]="['/user-profile']"
+            class="btn btn-success">
+      Add a new User
+    </button>
+  </div>
+
+  <mat-form-field [hidden]="!users">
+    <input matInput (keyup)="loadData($event.target.value)"
+           placeholder="Filter by name (or part of it)...">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="users" class="mat-elevation-z8" [hidden]="!users"
+         matSort (matSortChange)="loadData()"
+         matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+      <td mat-cell *matCellDef="let user">
+        <a [routerLink]="['/user-profile', user.id]">{{user.fullName}}</a>
+        <br />
+        <a [routerLink]="['/user-workinghours', user.id]"> Edit: Working Hours</a>
+      </td>
+    </ng-container>
+
+    <!-- Lat Column -->
+    <ng-container matColumnDef="mobile">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>mobile</th>
+      <td mat-cell *matCellDef="let user"> {{user.mobile}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
+      <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>active </th>
+      <td mat-cell *matCellDef="let user"> {{user.active}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>title</th>
+      <td mat-cell *matCellDef="let user"> {{user.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAppt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Appt</th>
+      <td mat-cell *matCellDef="let user"> {{user.totalAppt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="canBook">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>canBook</th>
+      <td mat-cell *matCellDef="let user"> {{user.canBook}} </td>
+    </ng-container>
+     
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  ﻿
+  <!-- Pagination directive -->
+  <mat-paginator [hidden]="!users"
+                 (page)="getData($event)"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 20, 50]"
+                 showFirstLastButtons></mat-paginator>
+</div>

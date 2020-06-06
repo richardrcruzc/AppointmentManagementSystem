@@ -1,0 +1,307 @@
+
+<div class="container-fluid">
+  <h1 class="mt-4">Category</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{title}}</li>
+  </ol>
+
+
+
+
+  <div class="location-edit">
+ 
+
+    <p *ngIf="this.id && !location"><em>Loading...</em></p>
+
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Location name:</label>
+        <br />
+        <input type="text" id="description"
+               formControlName="description" required
+               placeholder="Location name..."
+               class="form-control" />
+
+        <div *ngIf="hasError('description')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('description').errors?.required">
+            Name is required.
+          </div>
+        </div>
+        <div *ngIf="form.get('description').errors?.isDupeField" class="invalid-feedback">
+          Location Name does already exist: please choose another.
+        </div>
+
+
+      </div>
+
+      <div class="form-group">
+        <label for="contactName">Contact Name</label>
+        <br />
+        <input type="text" id="contactName"
+               formControlName="contactName" required
+               placeholder="contact Name..."
+               class="form-control" />
+
+        <div *ngIf="hasError('contactName')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('contactName').errors?.required">
+            Name is required.
+          </div>
+        </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <br />
+        <input type="text" id="phone"
+               formControlName="phone" required
+               placeholder="phone..."
+               class="form-control" />
+
+        <div *ngIf="hasError('phone')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('phone').errors?.required">
+            Phone is required.
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Email</label>
+        <br />
+        <input type="text" id="contactEmail"
+               formControlName="contactEmail" required
+               placeholder="contact Email..."
+               class="form-control" />
+
+        <div *ngIf="hasError('contactEmail')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('contactEmail').errors?.required">
+            Contact Email is required.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <br />
+        <input type="text" id="address"
+               formControlName="address" required
+               placeholder="address..."
+               class="form-control" />
+
+        <div *ngIf="hasError('address')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('address').errors?.required">
+            Address is required.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="address1">Address1</label>
+        <br />
+        <input type="text" id="address1"
+               formControlName="address1" required
+               placeholder="address1..."
+               class="form-control" />
+
+
+
+      </div>
+      <div class="form-group">
+        <label for="city">city</label>
+        <br />
+        <input type="text" id="city"
+               formControlName="city" required
+               placeholder="city..."
+               class="form-control" />
+
+        <div *ngIf="hasError('city')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('city').errors?.required">
+            city is required.
+          </div>
+        </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="state">state</label>
+        <br />
+        <input type="text" id="state"
+               formControlName="state" required
+               placeholder="state..."
+               class="form-control" />
+
+        <div *ngIf="hasError('state')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('state').errors?.required">
+            State is required.
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="form-group">
+        <label for="zipCode">Zip Code</label>
+        <br />
+        <input type="text" id="zipCode"
+               formControlName="zipCode" required
+               placeholder="zipCode..."
+               class="form-control" />
+
+        <div *ngIf="hasError('zipCode')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('zipCode').errors?.required">
+            Zip Code is required.
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <br />
+        <input type="text" id="country"
+               formControlName="country" required
+               placeholder="country..."
+               class="form-control" />
+
+        <div *ngIf="hasError('country')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('country').errors?.required">
+            Country is required.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="active" formControlName="active" type="checkbox" />
+          <label class="custom-control-label" for="active">active</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="confirmation" formControlName="confirmation" type="checkbox" />
+          <label class="custom-control-label" for="confirmation">New appointment</label>
+          <div>Automatically sends to clientes when an appoitment is booked for then</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="reminder" formControlName="reminder" type="checkbox" />
+          <label class="custom-control-label" for="reminder">Upcomming Appointment Reminder</label>
+          <div>Automatically sends to clients 34 hours ahead of their appointment</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="rescheduling" formControlName="rescheduling" type="checkbox" />
+          <label class="custom-control-label" for="rescheduling">Rescheduled Appointment</label>
+          <div>Automatically sends a clients when their appointment is changed</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="thankYou" formControlName="thankYou" type="checkbox" />
+          <label class="custom-control-label" for="rescheduling">Thank You for Visiting </label>
+          <div>Automatically sends to clients when their is checked out</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="cancelation" formControlName="cancelation" type="checkbox" />
+          <label class="custom-control-label" for="cancelation">Cancelled Appointment</label>
+          <div>Automatically send to clients when their appointment is canncelled</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="noShowUp" formControlName="noShowUp" type="checkbox" />
+          <label class="custom-control-label" for="noShowUp">Did no Show Up</label>
+          <div>Automatically send to clients when their appointment is marked as not show</div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group commands">
+        <button *ngIf="id" type="submit"
+                (click)="onSubmit()"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+          Save
+        </button>
+        <button *ngIf="!id" type="submit"
+                (click)="onSubmit()"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+          Create
+        </button>
+        <button type="button"
+                [routerLink]="['/locations']"
+                class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+      <!-- Form debug info panel -->
+      <div class="card bg-light mb-3">
+        <div class="card-header">Form Debug Info</div>
+        <div class="card-body">
+          <div class="card-text">
+            <div><strong>Form value:</strong></div>
+            <div class="help-block">
+              {{ form.value | json }}
+            </div>
+            <div class="mt-2"><strong>Form status:</strong></div>
+            <div class="help-block">
+              {{ form.status | json }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form activity log panel -->
+      <div class="card bg-light mb-3">
+        <div class="card-header">Form Activity Log</div>
+        <div class="card-body">
+          <div class="card-text">
+            <div class="help-block">
+              <span *ngIf="activityLog"
+                    [innerHTML]="activityLog"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--<div formArrayName="aliases">
+        <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+           The repeated alias template
+          <label>
+            Alias:
+            <input type="text" [formControlName]="i">
+          </label>
+        </div>
+      </div>-->
+    </div>
+  </div>
+  </div>

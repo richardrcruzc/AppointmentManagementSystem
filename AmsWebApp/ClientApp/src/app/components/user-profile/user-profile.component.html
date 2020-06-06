@@ -1,0 +1,178 @@
+
+<div class="container-fluid">
+  <h1 class="mt-4">User</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{title}}</li>
+  </ol>
+
+
+
+  <div class="user-edit">
+
+
+    <p *ngIf="id && !user"><em>Loading...</em></p>
+
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="firstName">First name:</label>
+        <br />
+        <input type="text" id="firstName"
+               formControlName="firstName" required
+               placeholder="First name..."
+               class="form-control" />
+
+        <div *ngIf="hasError('firstName')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('firstName').errors?.required">
+            First  Name is required.
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name:</label>
+        <br />
+        <input type="text" id="lastName"
+               formControlName="lastName" required
+               placeholder="First name..."
+               class="form-control" />
+
+        <div *ngIf="hasError('lastName')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('lastName').errors?.required">
+            last Name is required.
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="mobile">mobile Number</label>
+        <br />
+        <input type="tel" id="mobile"
+               formControlName="mobile" required
+               placeholder="mobile..."
+               class="form-control" />
+
+        <div *ngIf="hasError('mobile')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('mobile').errors?.required">
+            mobile is required.
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" formControlName="active" id="active" type="checkbox"  readonly/>
+          <label class="custom-control-label" for="active">active</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" formControlName="canBook" id="canBook" type="checkbox" readonly/>
+          <label class="custom-control-label" for="canBook">canBook</label>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="title">title</label>
+        <br />
+        <input type="text" id="title"
+               formControlName="title" required
+               placeholder="title..."
+               class="form-control" />
+
+        <div *ngIf="hasError('title')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('title').errors?.required">
+            title is required.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="briefCv">briefCv</label>
+        <br />
+        <input type="text" id="briefCv"
+               formControlName="briefCv" required
+               placeholder="brief Curriculum vitae..."
+               class="form-control" />
+
+        <div *ngIf="hasError('briefCv')"
+             class="invalid-feedback">
+          <div *ngIf="form.get('briefCv').errors?.required">
+            brief Curriculum vitae is required.
+          </div>
+        </div>
+
+      </div>
+     
+
+      <div class="form-group commands">
+        <button   type="submit"
+                (click)="onSubmit()"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+          Save
+        </button>
+        
+        <button type="button"
+                [routerLink]="['/users-profiles']"
+                class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+      <!-- Form debug info panel -->
+      <div class="card bg-light mb-3">
+        <div class="card-header">Form Debug Info</div>
+        <div class="card-body">
+          <div class="card-text">
+            <div><strong>Form value:</strong></div>
+            <div class="help-block">
+              {{ form.value | json }}
+            </div>
+            <div class="mt-2"><strong>Form status:</strong></div>
+            <div class="help-block">
+              {{ form.status | json }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form activity log panel -->
+      <div class="card bg-light mb-3">
+        <div class="card-header">Form Activity Log</div>
+        <div class="card-body">
+          <div class="card-text">
+            <div class="help-block">
+              <span *ngIf="activityLog"
+                    [innerHTML]="activityLog"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--<div formArrayName="aliases">
+        <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+           The repeated alias template
+          <label>
+            Alias:
+            <input type="text" [formControlName]="i">
+          </label>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+
+  <div class="container-fluid">
+    <h1 class="mt-4">Category</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">{{title}}</li>
+    </ol>
+
+
+
+    <div class="location-edit">
+
+      <p *ngIf="this.id && !location"><em>Loading...</em></p>
+
+      <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Category Description:</label>
+          <br />
+          <input type="text" id="description"
+                 formControlName="description" required
+                 placeholder="Category Description..."
+                 class="form-control" />
+
+          <div *ngIf="hasError('description')"
+               class="invalid-feedback">
+            <div *ngIf="form.get('description').errors?.required">
+              description is required.
+            </div>
+          </div>
+          <div *ngIf="form.get('description').errors?.isDupeField" class="invalid-feedback">
+            Description does already exist: please choose another.
+          </div>
+
+
+        </div>
+
+
+        <div class="form-group commands">
+          <button *ngIf="id" type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="form.invalid"
+                  class="btn btn-success">
+            Save
+          </button>
+          <button *ngIf="!id" type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="form.invalid"
+                  class="btn btn-success">
+            Create
+          </button>
+          <button type="button"
+                  [routerLink]="['/categories']"
+                  class="btn btn-default">
+            Cancel
+          </button>
+        </div>
+        <!-- Form debug info panel -->
+        <div class="card bg-light mb-3">
+          <div class="card-header">Form Debug Info</div>
+          <div class="card-body">
+            <div class="card-text">
+              <div><strong>Form value:</strong></div>
+              <div class="help-block">
+                {{ form.value | json }}
+              </div>
+              <div class="mt-2"><strong>Form status:</strong></div>
+              <div class="help-block">
+                {{ form.status | json }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form activity log panel -->
+        <div class="card bg-light mb-3">
+          <div class="card-header">Form Activity Log</div>
+          <div class="card-body">
+            <div class="card-text">
+              <div class="help-block">
+                <span *ngIf="activityLog"
+                      [innerHTML]="activityLog"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--<div formArrayName="aliases">
+        <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+           The repeated alias template
+          <label>
+            Alias:
+            <input type="text" [formControlName]="i">
+          </label>
+        </div>
+      </div>-->
+      </div>
+    </div>
+  </div>
